@@ -8,7 +8,6 @@ model.
 ## Quickstart
 
 1. Install the [TensorFlow Go package](https://github.com/tensorflow/tensorflow/tree/master/tensorflow/go/README.md)
-   and the [TensorFlow Python libraries](https://www.tensorflow.org/install/) (typically `pip install tensorflow`)
 
 2. Download and unzip the training dataset. Something like:
 
