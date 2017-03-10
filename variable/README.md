@@ -19,9 +19,17 @@ See `variable_test.go` for a demonstration of implementing variables in Go.
 
 ## Caveats
 
-As of March 2017, the internal implementation of variables in the TensorFlow
-Python API was on a path of change. In particular, using "resource types"
-instead of "reference types". The details are beyond the scope of this README,
-but suffice to say that the implementation here is with resource types. See
-[`use_resource`](https://github.com/tensorflow/tensorflow/blob/83cd3fd279037c242017cd0ab8c825f30c375564/tensorflow/python/ops/variable_scope.py#L254)
-in the Python API.
+- As of March 2017, the internal implementation of variables in the TensorFlow
+  Python API was on a path of change. In particular, using "resource types"
+  instead of "reference types". The details are beyond the scope of this
+  README, but suffice to say that the implementation here is with resource
+  types. See
+  [`use_resource`](https://github.com/tensorflow/tensorflow/blob/83cd3fd279037c242017cd0ab8c825f30c375564/tensorflow/python/ops/variable_scope.py#L254)
+  and the [`ResourceVariable`](https://github.com/tensorflow/tensorflow/blob/master/tensorflow/python/ops/resource_variable_ops.py) class.
+- There is additional bookkeping in Python: adding variables to a list of all
+  variables stored in the `MetaGraphDef` (in a "collection"). That is not
+  happening here.
+
+Depending on your use case, these differences may not matter. But as of March
+2017, for any production use, it's still probably better to build the model in
+Python.
